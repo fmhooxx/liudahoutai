@@ -1,6 +1,8 @@
 <template>
   <!-- 今日人数页面 -->
-  <div>今日人数页面</div>
+  <div>
+    <el-card shadow="hover">111</el-card>
+  </div>
 </template>
 
 <script>

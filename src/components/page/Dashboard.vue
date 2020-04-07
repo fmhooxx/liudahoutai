@@ -5,7 +5,7 @@
     <DashboardHead>
       <div class="left-down" slot="Dashboard-left-down">
         <!-- 今日新增人数区域 -->
-        <div class="down-people down-common" @click="Today">
+        <div class="down-people down-common" @click="Today(0)">
           <img src="@/assets/img/new-people.png" alt />
           <div>
             今日新增人数
@@ -14,7 +14,7 @@
           </div>
         </div>
         <!-- 今日收益区域 -->
-        <div class="down-money down-common" @click="TodayProfit">
+        <div class="down-money down-common" @click="Today(1)">
           <img src="@/assets/img/new-money.png" alt />
           <div>
             今日收益
@@ -189,14 +189,8 @@ export default {
     };
   },
   methods: {
-    Today() {
-      this.$router.push('/Today');
-    },
-    TodayNumber() {
-      this.$router.push('/TodayNumber');
-    },
-    TodayProfit() {
-      this.$router.push('/TodayProfit');
+    Today(activeNum) {
+      this.$router.push(`/Today/${activeNum}`);
     },
     // 获取当前时间
     setNowTimes() {

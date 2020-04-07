@@ -33,7 +33,7 @@ export default new Router({
                         title: '今日收益'
                     }
                 }, {
-                    path: '/Today',
+                    path: '/Today/:activeNum',
                     component: () => import( /* webpackChunkName: "dashboard" */ '../components/page/Today/Today.vue'),
                     meta: {
                         title: '今日'

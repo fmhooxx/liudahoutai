@@ -4,18 +4,19 @@
     <!-- 头部区域 -->
     <DashboardHead>
       <div slot="Today" class="today">
-        <div class="today-return">返回</div>
+        <div class="today-return" @click="goReturn">返回</div>
         <div class="today-box">
           <div v-for="(item, index) in labelList" :key="index">
             <div
               :class="item.id == activeNum ? 'today-active' : ''"
               class="today-box-item"
+              @click="switchActive(item.id)"
             >{{item.text}}</div>
           </div>
         </div>
       </div>
     </DashboardHead>
-    <TodayNumber v-if="flag"></TodayNumber>
+    <TodayNumber v-if="isActive"></TodayNumber>
     <TodayProfit v-else></TodayProfit>
   </div>
 </template>
@@ -36,7 +37,7 @@ export default {
   data() {
     return {
       flag: true,
-      activeNum: 0,
+      activeNum: '',
       labelList: [
         {
           id: 0,
@@ -48,6 +49,27 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    // 点击切换
+    switchActive(id) {
+      this.activeNum = id;
+    },
+    // 返回系统首页
+    goReturn() {
+      this.$router.push('/dashboard');
+    }
+  },
+  created() {
+    this.activeNum = this.$route.params.activeNum;
+  },
+  computed: {
+    isActive() {
+      if (this.activeNum == 0) {
+        return true;
+      }
+      return false;
+    }
   }
 };
 </script>
@@ -69,6 +91,7 @@ export default {
     background-color: #66b98d;
     border-radius: 12px;
     margin-right: 75px;
+    cursor: pointer;
   }
   .today-box {
     display: flex;
@@ -83,6 +106,7 @@ export default {
       font-size: 14px;
       background-color: #c9cdd3;
       margin: 0 5px;
+      cursor: pointer;
     }
     .today-active {
       background-color: #66b98d;
